@@ -35,9 +35,70 @@ Se define la estructura de un catálogo de videos. El catálogo tendrá dos list
 los mismos.
 """
 
-# Construccion de modelos
+##-----## Definición modelos. ##-----##
 
-# Funciones para agregar informacion al catalogo
+# Función que crea el catálogo.
+def nuevo_catalogo():
+    """
+        Esta función permite inicializar el catálogo. Este guarda dos listas de elementos:
+         1- Los artistas.
+         2- Las obras.
+
+        No tiene parámetros.
+        Retorna el catálogo.
+
+    """
+    # Crear variable que guarda el diccionario que hace referencia al catálogo.
+    catalogo = {'artistas': None,
+                'obras': None}
+
+    # Añadir listas vacías de los artistas y las obras al catálogo.
+    catalogo['artistas'] = lt.newList('ARRAY_LIST')         # Pendiente añadir función de comparación.
+    catalogo['obras'] = lt.newList('ARRAY_LIST')            # Pendiente añadir función de comparación.
+    
+    # Retornar el catálogo.
+    return catalogo
+
+
+
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+
+
+##-----## Definición de operaciones sobre el catálogo. ##-----##
+
+
+# Función que agrega un artista al catálogo.
+def agregar_artista(catalogo, artista):
+    """
+        Esta función permite agregar un atista al catálogo, guardándolo en el arreglo 'artistas'.
+
+        Parámetros:
+            -> catalogo: catálogo.
+            -> artista: artista que se quiere adicionar. 
+
+        No tiene retorno.
+
+    """
+    # Agregar al artista a la última posición de la lista "artistas".
+    lt.addLast(catalogo['artistas'], artista)
+
+
+# Función que agrega una obra al catálogo.
+def agregar_obra(catalogo, obra):
+    """
+        Esta función permite agregar una obra al catálogo, guardándolo en el arreglo 'obras'.
+
+        Parámetros:
+            -> catalogo: catálogo.
+            -> obra: obra que se quiere adicionar. 
+
+        No tiene retorno.
+
+    """
+    # Agregar la obra a la última posición de la lista "obras".
+    lt.addLast(catalogo['obras'], obra)
 
 # Funciones para creacion de datos
 

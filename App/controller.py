@@ -29,9 +29,98 @@ import csv
 El controlador se encarga de mediar entre la vista y el modelo.
 """
 
-# Inicialización del Catálogo de libros
 
-# Funciones para la carga de datos
+##-----## Definición de función de inialización del catálogo. ##-----##
+
+
+def inicializar_catalogo():
+    """
+        Esta función invoca a la función nuevo_catalogo de model.py y retorna al catálogo.
+
+        No tiene parámetros.
+
+        Retorno:
+            -> El catálogo. 
+
+    """
+    # Invocar función nuevo_catalogo, guardar su retorno en la variable catalogo y retornar.
+    catalogo = model.nuevo_catalogo()
+    return catalogo
+
+
+
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+
+
+##-----## Definición de funciones para cargar datos. ##-----##
+
+
+# Función que carga toda la información al catálogo.
+def cargar_datos(catalogo):
+    """
+        Esta función carga toda la información tanto de los artistas como de las obras
+        al catálogo. Lo hace invocando a las funciones cargar_artistas y cargar_obras.
+
+        Parámetro:
+            -> catalogo: catálogo.
+
+        No tiene retorno.
+
+    """
+    # Cargar artistas.
+    cargar_artistas(catalogo)
+
+    # Cargar obras.
+    cargar_obras(catalogo)
+
+
+# Función que carga todos los artistas.
+def cargar_artistas(catalogo):
+    """
+        Función que carga todos los artistas.
+
+        Parámetro:
+            -> catalogo: catálogo.
+
+        No tiene retorno.
+        
+    """
+    # Crear variable que guarda la referencia al archivo de los artistas.
+    archivo_artistas = cf.data_dir + 'MoMA/Artists-utf8-small.csv'
+
+    # Crear variable que guarda todos los artistas.
+    input_file = csv.DictReader(open(archivo_artistas, encoding='utf-8'))
+
+    # Añadir cada artista al catálogo.
+    for artista in input_file:
+        model.addTag(catalogo, artista)         # Pendiente cambiar addTag.
+
+
+# Función que carga todas las obras.
+def cargar_obras(catalogo):
+    """
+        Función que carga todas las obras.
+
+        Parámetro:
+            -> catalogo: catálogo.
+
+        No tiene retorno.
+        
+    """
+    # Crear variable que guarda la referencia al archivo de las obras.
+    archivo_obras = cf.data_dir + 'MoMA/Artworks-utf8-small.csv'
+
+    # Crear variable que guarda todas las obras.
+    input_file = csv.DictReader(open(archivo_obras, encoding='utf-8'))
+
+    # Añadir cada obra al catálogo.
+    for obra in input_file:
+        model.addTag(catalogo, obra)         # Pendiente cambiar addTag.
+
+
+
 
 # Funciones de ordenamiento
 

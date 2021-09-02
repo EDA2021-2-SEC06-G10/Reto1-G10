@@ -34,19 +34,33 @@ se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
 
-def printMenu():
-    print("Bienvenido")
-    print("1- Cargar información en el catálogo")
-    print("2- ")
+# Función que imprime el menú de opciones
+def imprimir_menu():
+    """
+        Esta función imprime el menú de interacción con el usuario.
 
-catalog = None
+        No tiene ni parámetros ni retornos.
+
+    """
+    print("Bienvenido.")
+    print("  1- Cargar información en el catálogo.")
+    print("  2- Cargar requerimiento 1.")
+    print("  3- Cargar requerimiento 2.")
+    print("  4- Cargar requerimiento 3.")
+    print("  5- Cargar requerimiento 4.")
+    print("  0- Salir.")
+
+# Crear variable que guardará el catálogo.
+catalogo = None
 
 """
-Menu principal
+Menú principal
 """
 while True:
-    printMenu()
+    imprimir_menu()
+
     inputs = input('Seleccione una opción para continuar\n')
+
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
 
