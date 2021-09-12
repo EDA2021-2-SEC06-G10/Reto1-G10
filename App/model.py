@@ -45,10 +45,11 @@ def nuevo_catalogo():
          2- Las obras.
 
         No tiene parámetros.
+
         Retorna el catálogo.
 
     """
-    # Crear variable que guarda el diccionario que hace referencia al catálogo.
+    # Crear variable que guarda la lista del catálogo.
     catalogo = {'artistas': None,
                 'obras': None}
 
@@ -72,7 +73,7 @@ def nuevo_catalogo():
 # Función que agrega un artista al catálogo.
 def agregar_artista(catalogo, artista):
     """
-        Esta función permite agregar un atista al catálogo, guardándolo en el arreglo 'artistas'.
+        Esta función permite agregar un artista al catálogo, guardándolo en el arreglo 'artistas'.
 
         Parámetros:
             -> catalogo: catálogo.
@@ -100,7 +101,77 @@ def agregar_obra(catalogo, obra):
     # Agregar la obra a la última posición de la lista "obras".
     lt.addLast(catalogo['obras'], obra)
 
-# Funciones para creacion de datos
+
+##-----## Definición de funciones para la creación de datos. ##-----##
+
+
+# Función que crea un artista.
+def nuevo_artista (info_artista: dict) -> dict:
+    """
+        Esta función permite crear un artista. Estos se representarán mediante 
+        el tipo de dato dict de Python.
+
+        Parámetros:
+            -> info_artista (dict): diccionario que tiene toda la información del artista
+                                    que se encuentra en la base de datos.
+
+        Retorno:
+            -> (dict): diccionario que representa al artista.
+
+    """
+    # Crear variable que guarda el diccionario con la información de interés del artista.
+    artista = {"nombre": "",
+               "id": "",
+               "nacionalidad": "",
+               "nacimiento": None,
+               "fallecimiento": None}
+
+    # Añadir datos.
+    artista["nombre"] = info_artista["DisplayName"]
+    artista["id"] = int(info_artista["ConstituentID"])
+    artista["nacionalidad"] = info_artista["Nationality"]
+    artista["nacimiento"] = int(info_artista["BeginDate"])
+    artista["fallecimiento"] = int(info_artista["EndDate"])
+
+    # Retornar al artista.
+    return artista
+
+# Función que crea una obra.
+def nueva_obra (info_obra: str, id: int) -> dict:
+    """
+        Esta función permite crear una obra. Estas se representarán mediante 
+        el tipo de dato dict de Python.
+
+        Parámetros:
+            -> info_obra (dict): diccionario que tiene toda la información de la obra que
+                                 se encuentra en la base de datos.
+
+        Retorno:
+            -> (dict): diccionario que representa a la obra.
+
+    """
+    # Crear variable que guarda el diccionario con la información de interés de la obra.
+    obra = {"título": "",
+            "id": "",
+            "id_artistas": None,
+            "medio": str,
+            "clasificación": str,
+            "fecha_adquisición": str,
+            "circumferencia": None,
+            "profundidad": None,
+            "diámetro": None,
+            "altura": None,
+            "largo": None,
+            "peso": None,
+            "ancho": None,
+            "altura_base": None}
+
+    # Añadir datos.
+    obra["título"] = info_obra["Title"]
+    obra["id"] = int(info_obra["ObjectID"])
+
+
+    return obra
 
 # Funciones de consulta
 
