@@ -3,11 +3,11 @@ Integrantes:
  Req. 3 - Andrés Leonardo Beltran, 202014143, al.beltran
 
 Modificaciones realizadas:
- 1- Se crearon las funciones nuevo_artista y nueva_obra, las cuales crean diccionarios que guardan la información de interés de los artistas y de las obras.
- 2- Se creó el archivo Pruebas.py.
-
-Pendiente:
- 1- Terminar las funciones nuevo_artista y nueva_obra.
+ 1- Se terminaron los cuerpos de las funciones nuevo_artista() y nueva_obra() de model.py.
+ 2- Se modificaron las funciones agregar_artista() y agregar_obra() de model.py, actualizando las funciones de creación.
+ 3- Se modificaron las funciones cargar_obras() y cargar_artistas() de controller.py, actualizando las funciones de adición de datos.
+ 4- Se creó el módulo funciones.py. En este se definirán funciones que serán de utilidad para realizar pequeñas tareas particulares.
+ 5- Se definió la función convertir_a_lista() en funciones.py, la cual permite convertir la cadena de texto que guarda los id de los artistas que crearon una obra en una lista. Esto para facilitar la manipulación de estos datos posteriormente.
 
 
 ##---------------------------------------------------------------------------------------------------------##

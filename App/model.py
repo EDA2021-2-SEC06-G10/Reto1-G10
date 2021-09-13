@@ -28,6 +28,7 @@
 import config as cf
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
+import funciones as fun
 assert cf
 
 """
@@ -71,35 +72,41 @@ def nuevo_catalogo():
 
 
 # Función que agrega un artista al catálogo.
-def agregar_artista(catalogo, artista):
+def agregar_artista(catalogo, artista: dict) -> None:
     """
         Esta función permite agregar un artista al catálogo, guardándolo en el arreglo 'artistas'.
 
         Parámetros:
             -> catalogo: catálogo.
-            -> artista: artista que se quiere adicionar. 
+            -> artista (dict): artista que se quiere adicionar.  
 
         No tiene retorno.
 
     """
+    # Crear un artista con los datos ingresados por parámetro.
+    artista_nuevo = nuevo_artista(artista)
+
     # Agregar al artista a la última posición de la lista "artistas".
-    lt.addLast(catalogo['artistas'], artista)
+    lt.addLast(catalogo['artistas'], artista_nuevo)
 
 
 # Función que agrega una obra al catálogo.
-def agregar_obra(catalogo, obra):
+def agregar_obra(catalogo, obra: dict):
     """
         Esta función permite agregar una obra al catálogo, guardándolo en el arreglo 'obras'.
 
         Parámetros:
             -> catalogo: catálogo.
-            -> obra: obra que se quiere adicionar. 
+            -> obra (dict): obra que se quiere adicionar. 
 
         No tiene retorno.
 
     """
+    # Crear una obra con los datos ingresados por parámetro.
+    obra_nueva = nueva_obra(obra)
+
     # Agregar la obra a la última posición de la lista "obras".
-    lt.addLast(catalogo['obras'], obra)
+    lt.addLast(catalogo['obras'], obra_nueva)
 
 
 ##-----## Definición de funciones para la creación de datos. ##-----##
@@ -137,7 +144,7 @@ def nuevo_artista (info_artista: dict) -> dict:
     return artista
 
 # Función que crea una obra.
-def nueva_obra (info_obra: str, id: int) -> dict:
+def nueva_obra (info_obra: str) -> dict:
     """
         Esta función permite crear una obra. Estas se representarán mediante 
         el tipo de dato dict de Python.
@@ -151,27 +158,46 @@ def nueva_obra (info_obra: str, id: int) -> dict:
 
     """
     # Crear variable que guarda el diccionario con la información de interés de la obra.
-    obra = {"título": "",
-            "id": "",
-            "id_artistas": None,
-            "medio": str,
-            "clasificación": str,
-            "fecha_adquisición": str,
-            "circumferencia": None,
-            "profundidad": None,
-            "diámetro": None,
-            "altura": None,
-            "largo": None,
-            "peso": None,
-            "ancho": None,
-            "altura_base": None}
+    obra = {"Title": "",
+            "ObjectID": "",
+            "ConstituentID": None,
+            "Medium": str,
+            "Classification": str,
+            "DateAcquired": str,
+            "Circumference (cm)": None,
+            "Depth (cm)": None,
+            "Diameter (cm)": None,
+            "Height (cm)": None,
+            "Length (cm)": None,
+            "Weight (kg)": None,
+            "Width (cm)": None,
+            "Seat Height (cm)": None}
 
-    # Añadir datos.
-    obra["título"] = info_obra["Title"]
-    obra["id"] = int(info_obra["ObjectID"])
+    # Crear variable que guarda la lista de los id de los atistas que crearon la obra y asignarle la lista
+    # que contiene dichos datos.
+    lista_id_artistas = []
+    lista_id_artistas = fun.convertir_a_lista(info_obra["ConstituentID"])
 
+    # Iteración que añade la información de la obra.
+    for propiedad in info_obra.keys():
+        # Determinar si la propiedad actual es "ConstituentID".
+        es_ConstituentID = (propiedad == "ConstituentID")
 
+        # Si la obra no tiene la propiedad actual.
+        if (info_obra[propiedad] == ""):
+            # Asignar el valor de la propiedad como "".
+            obra[propiedad] = ""
+        # De lo contrario
+        else:            
+            # Añadir propiedad.
+            if not(es_ConstituentID):
+                obra[propiedad] = info_obra[propiedad]
+            else:
+                obra[propiedad] = lista_id_artistas
+
+    # Retornar obra.
     return obra
+
 
 # Funciones de consulta
 

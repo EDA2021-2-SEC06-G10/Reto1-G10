@@ -32,15 +32,15 @@ El controlador se encarga de mediar entre la vista y el modelo.
 
 ##-----## Definición de función de inialización del catálogo. ##-----##
 
-
-def inicializar_catalogo():
+# Función que retorna el catálogo.
+def inicializar_catalogo() -> dict:
     """
         Esta función invoca a la función nuevo_catalogo de model.py y retorna al catálogo.
 
         No tiene parámetros.
 
         Retorno:
-            -> El catálogo. 
+            -> (dict): el catálogo. 
 
     """
     # Invocar función nuevo_catalogo, guardar su retorno en la variable catalogo y retornar.
@@ -58,7 +58,7 @@ def inicializar_catalogo():
 
 
 # Función que carga toda la información al catálogo.
-def cargar_datos(catalogo):
+def cargar_datos(catalogo) -> None:
     """
         Esta función carga toda la información tanto de los artistas como de las obras
         al catálogo. Lo hace invocando a las funciones cargar_artistas y cargar_obras.
@@ -77,7 +77,7 @@ def cargar_datos(catalogo):
 
 
 # Función que carga todos los artistas.
-def cargar_artistas(catalogo):
+def cargar_artistas(catalogo) -> None:
     """
         Función que carga todos los artistas.
 
@@ -95,11 +95,11 @@ def cargar_artistas(catalogo):
 
     # Añadir cada artista al catálogo.
     for artista in input_file:
-        model.addTag(catalogo, artista)         # Pendiente cambiar addTag.
+        model.agregar_artista(catalogo, artista)
 
 
 # Función que carga todas las obras.
-def cargar_obras(catalogo):
+def cargar_obras(catalogo) -> None:
     """
         Función que carga todas las obras.
 
@@ -117,7 +117,7 @@ def cargar_obras(catalogo):
 
     # Añadir cada obra al catálogo.
     for obra in input_file:
-        model.addTag(catalogo, obra)         # Pendiente cambiar addTag.
+        model.agregar_obra(catalogo, obra)
 
 
 
