@@ -27,36 +27,45 @@
 
 import config as cf
 from DISClib.ADT import list as lt
-from DISClib.Algorithms.Sorting import shellsort as sa
 import funciones as fun
 assert cf
+from DISClib.Algorithms.Sorting import insertionsort as ins
+from DISClib.Algorithms.Sorting import shellsort as she
+from DISClib.Algorithms.Sorting import mergesort as mer
+from DISClib.Algorithms.Sorting import quicksort as qui
+import time
 
 """
-Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
-los mismos.
+Se define la estructura de un catálogo del museo, el cual tendrá dos listas:
+una para los artistas, otra para las obras.
 """
 
 ##-----## Definición modelos. ##-----##
 
 # Función que crea el catálogo.
-def nuevo_catalogo():
+def nuevo_catalogo(tipo_representacion: str):
     """
         Esta función permite inicializar el catálogo. Este guarda dos listas de elementos:
          1- Los artistas.
          2- Las obras.
 
-        No tiene parámetros.
+        Permite indicar el tipo de representación de la lista del catálogo.
 
-        Retorna el catálogo.
+        Parámetro:
+            -> tipo_representacion (str): cadena que indica la representación que se desea
+                                          que tenga la lista del catálogo.
+
+        Retorno:
+            -> El catálogo del museo.
 
     """
     # Crear variable que guarda la lista del catálogo.
     catalogo = {'artistas': None,
                 'obras': None}
 
-    # Añadir listas vacías de los artistas y las obras al catálogo.
-    catalogo['artistas'] = lt.newList('ARRAY_LIST')         # Pendiente añadir función de comparación.
-    catalogo['obras'] = lt.newList('ARRAY_LIST')            # Pendiente añadir función de comparación.
+    # Crear listas vacías de los artistas y las obras al catálogo.
+    catalogo['artistas'] = lt.newList(tipo_representacion,cmpfunction=cmp_obras_por_fecha_adquisicion)         # Pendiente añadir función de comparación.
+    catalogo['obras'] = lt.newList(tipo_representacion,cmpfunction=cmp_obras_por_fecha_adquisicion)            # Pendiente añadir función de comparación.
     
     # Retornar el catálogo.
     return catalogo
@@ -161,17 +170,17 @@ def nueva_obra (info_obra: str) -> dict:
     obra = {"Title": "",
             "ObjectID": "",
             "ConstituentID": None,
-            "Medium": str,
-            "Classification": str,
-            "DateAcquired": str,
-            "Circumference (cm)": None,
-            "Depth (cm)": None,
-            "Diameter (cm)": None,
-            "Height (cm)": None,
-            "Length (cm)": None,
-            "Weight (kg)": None,
-            "Width (cm)": None,
-            "Seat Height (cm)": None}
+            "Medium": "",
+            "Classification": "",
+            "DateAcquired": "",
+            "Circumference (cm)": "",
+            "Depth (cm)": "",
+            "Diameter (cm)": "",
+            "Height (cm)": "",
+            "Length (cm)": "",
+            "Weight (kg)": "",
+            "Width (cm)": "",
+            "Seat Height (cm)": ""}
 
     # Crear variable que guarda la lista de los id de los atistas que crearon la obra y asignarle la lista
     # que contiene dichos datos.
@@ -199,8 +208,125 @@ def nueva_obra (info_obra: str) -> dict:
     return obra
 
 
-# Funciones de consulta
+
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+
+
+
+##-----## Definición de funciones para la comparación de datos. ##-----##
+
+
+# Función para comparación de obras de arte.
+def cmp_obras_por_fecha_adquisicion(obra_1, obra_2) -> bool:  # Pendiente especificar tipo obra_1 y obra_2.
+    """
+        Esta función determina si la fecha de adquisición de obra_1 es menor que
+        la de obra_2.
+
+        Parámetros:
+            -> obra_1: información de la primera obra.
+            -> obra_2: información de la segunda obra.
+        
+        Retorno:
+            -> (bool): True si la fecha de adquisición de obra_1 es menor que la de obra_2.
+                       False de lo contrario.
+    
+    """
+    # Crear variable de retorno.
+    es_menor = False
+
+    # Crear variables que guardan las fechas.
+    fecha_obra_1 = obra_1["DateAcquired"]
+    fecha_obra_2 = obra_2["DateAcquired"]
+
+    # Si ambas obras tienen fecha de adquicisión.
+    if not(fecha_obra_1 == "" and fecha_obra_2 == ""):
+        # Crear variables que guardan el año, mes y día de cada fecha.
+        anio_1 = int(fecha_obra_1[0:3])
+        mes_1 = int(fecha_obra_1[5:6])
+        dia_1 = int(fecha_obra_1[8:9])
+        anio_2 = int(fecha_obra_2[0:3])
+        mes_2 = int(fecha_obra_2[5:6])
+        dia_2 = int(fecha_obra_2[8:9])
+
+        # Si el año es menor.
+        if anio_1 < anio_2:
+            es_menor = True
+
+        # Si los años son iguales.
+        elif anio_1 == anio_2:
+            # Si el mes es menor.
+            if mes_1 < mes_2:
+                es_menor = True
+
+            # Si los meses son iguales.
+            elif mes_1 == mes_2:
+                # Si el día es menor.
+                if dia_1 < dia_2:
+                    es_menor = True
+    
+    # Retornar respuesta.
+    return (es_menor)
+    
+
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 
-# Funciones de ordenamiento
+
+
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+
+
+
+##-----## Definición de funciones de ordenamiento. ##-----##
+
+
+# Función ordenamiento obras con base en su fecha de adquisión.
+def ordenar_obras(catalogo, tamanio: int, algor_orden: str) -> tuple:
+    """
+        Esta función ordena una sublista de tamaño especificado que contiene obras
+        con base en la fecha de adquicisión y determina el tiempo que se demora en hacerlo.
+
+        Parámetros:
+            -> catalogo: catálogo del museo.
+            -> tamanio (int): tamaño de la sublista.
+            -> algor_orden (str): cadena que especifica el algoritmo de ordenamiento
+                                  que se quiere usar.
+        
+        Retorno:
+            -> Tupla con sublista ordenada y tiempo de ejecución del algoritmo de 
+               ordenamiento en milisegundos.
+
+    """
+    # Crear variable de retorno.
+    lista_ordenada = None
+
+    # Crear sublista.
+    sublista = lt.subList(catalogo["obras"], 1, 100)
+    sublista = sublista.copy
+
+    # Inicializar medición.
+    start_time = time.process_time()
+
+    # Ordenar la sublista dependiendo del algoritmo especificado.
+    if (algor_orden == "Insertion Sort"):
+        lista_ordenada = ins.sort(sublista, ordenar_obras)
+    elif (algor_orden == "Shell Sort"):
+        lista_ordenada = she.sort(sublista, ordenar_obras)
+    elif (algor_orden == "Merge Sort"):
+        lista_ordenada = mer.sort(sublista, ordenar_obras)
+    elif (algor_orden == "Quick Sort"):
+        lista_ordenada = qui.sort(sublista, ordenar_obras)
+    
+    # Parar medición.
+    stop_time = time.process_time()
+
+    # Calcular tiempo de ejeución.
+    elapsed_time_mseg = (stop_time - start_time)*1000
+
+    # Crear tupla con lista ordenada y tiempo de ejecución y retornarla.
+    tupla_retorno = (elapsed_time_mseg, lista_ordenada)
+    return (tupla_retorno)

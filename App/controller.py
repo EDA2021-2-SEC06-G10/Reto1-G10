@@ -33,18 +33,20 @@ El controlador se encarga de mediar entre la vista y el modelo.
 ##-----## Definición de función de inialización del catálogo. ##-----##
 
 # Función que retorna el catálogo.
-def inicializar_catalogo() -> dict:
+def inicializar_catalogo(tipo_representacion: str):
     """
         Esta función invoca a la función nuevo_catalogo de model.py y retorna al catálogo.
 
-        No tiene parámetros.
+        Parámetro:
+            -> tipo_representacion (str): cadena que indica la representación que se desea
+                                          que tenga la lista del catálogo.
 
         Retorno:
-            -> (dict): el catálogo. 
+            -> El catálogo. 
 
     """
     # Invocar función nuevo_catalogo, guardar su retorno en la variable catalogo y retornar.
-    catalogo = model.nuevo_catalogo()
+    catalogo = model.nuevo_catalogo(tipo_representacion)
     return catalogo
 
 
@@ -64,7 +66,7 @@ def cargar_datos(catalogo) -> None:
         al catálogo. Lo hace invocando a las funciones cargar_artistas y cargar_obras.
 
         Parámetro:
-            -> catalogo: catálogo.
+            -> catalogo (dict): catálogo.
 
         No tiene retorno.
 
@@ -123,5 +125,35 @@ def cargar_obras(catalogo) -> None:
 
 
 # Funciones de ordenamiento
+
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+
+
+
+##-----## Definición de funciones de ordenamiento. ##-----##
+
+
+# Función ordenamiento obras con base en su fecha de adquisión.
+def ordenar_obras(catalogo, tamanio: int, algor_orden: str) -> tuple:
+    """
+        Esta función ordena una sublista de tamaño especificado que contiene obras
+        con base en la fecha de adquicisión y determina el tiempo que se demora en hacerlo.
+
+        Parámetros:
+            -> catalogo: catálogo del museo.
+            -> tamanio (int): tamaño de la sublista.
+            -> algor_orden (str): cadena que especifica el algoritmo de ordenamiento
+                                  que se quiere usar.
+        
+        Retorno:
+            -> Tupla con sublista ordenada y tiempo de ejecución del algoritmo de 
+               ordenamiento en milisegundos.
+
+    """
+    # Crear tupla de retorno y retornarla.
+    tupla_retorno = model.ordenar_obras(catalogo, tamanio, algor_orden)
+    return (tupla_retorno)
 
 # Funciones de consulta sobre el catálogo

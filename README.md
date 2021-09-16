@@ -1,13 +1,31 @@
 Integrantes:
- Req. 2 - José Nicolás Cárdenas, 201922006, j.cardenast
- Req. 3 - Andrés Leonardo Beltran, 202014143, al.beltran
+ -> José Nicolás Cárdenas, 201922006, j.cardenast
+ -> Andrés Leonardo Beltran, 202014143, al.beltran
 
-Modificaciones realizadas:
- 1- Se terminaron los cuerpos de las funciones nuevo_artista() y nueva_obra() de model.py.
- 2- Se modificaron las funciones agregar_artista() y agregar_obra() de model.py, actualizando las funciones de creación.
- 3- Se modificaron las funciones cargar_obras() y cargar_artistas() de controller.py, actualizando las funciones de adición de datos.
- 4- Se creó el módulo funciones.py. En este se definirán funciones que serán de utilidad para realizar pequeñas tareas particulares.
- 5- Se definió la función convertir_a_lista() en funciones.py, la cual permite convertir la cadena de texto que guarda los id de los artistas que crearon una obra en una lista. Esto para facilitar la manipulación de estos datos posteriormente.
+MODIFICACIONES REALIZADAS:
+
+ 1- En view.py(), se crearon las siguientes funciones:
+    > inicializar_catalogo(): inicializa el catálogo.
+    > cargar_datos(): carga los datos.
+
+ 2- Se modificaron las siguientes funciones de tal forma que reciban como parámetro una cadena que indica la representación que se desea que tenga la lista del catálogo.
+    > view.inicializar_catalogo().
+    > controller.inicializar_catalogo().
+    > model.nuevo_catalogo().
+
+ 3- En view.py, se cambió el menú principal para que, al escoger la opción 1, se le permitiera al usuario escoger el tipo de representación de la lista del catálogo.
+
+ 4- En model.py, se definió la función cmp_obras_por_fecha_adquisicion(), la cual cumple dicho propósito.
+
+ 5- En model.py, se importaron los módulos referentes a los cuatro algoritmos de ordenamiento requeridos.
+
+ 6- Se definieron las siguientes funciones, las cuales ordenan las obras con base en su fecha de adquisión:
+    > ordenar_obras() en model.py.
+    > ordenar_obras() en controller.py.
+
+ 7- En view.py, se definió la función deter_algor_orden(), la cual retorna una cadena con el algoritmo de ordenamiento que desea usar el usuario.
+
+ En general, se añadieron comentarios de varias línea de código.
 
 
 ##---------------------------------------------------------------------------------------------------------##
