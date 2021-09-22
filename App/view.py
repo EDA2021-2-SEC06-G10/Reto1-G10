@@ -59,8 +59,9 @@ def imprimir_menu() -> None:
     """
     print("\n\nBienvenido.")
     print("  1- Cargar información en el catálogo.")
-    print("  2- Ordenar obras por fecha de adquicisión.")
-    #print("  2- Cargar requerimiento 1.")
+    print("  2- Cargar requerimiento 1.")
+    print("  3- Cargar requerimiento 2.")
+    print("  4- Cargar requerimiento 3.")
     #print("  3- Cargar requerimiento 2.")
     #print("  4- Cargar requerimiento 3.")
     #print("  5- Cargar requerimiento 4.")
@@ -200,8 +201,8 @@ while True:
         ###
 
 
-    # Si escoge la opción 2.
-    elif (respuesta == 2):
+    # Si escoge la opción 3.
+    elif (respuesta == 3):
         # Inicializar catálogo.
         catalogo = inicializar_catalogo(tipo_repres)
         
@@ -241,6 +242,37 @@ while True:
 
         print(" Ejecutando algoritmo. Espere . . .")
         print("\n El tiempo de ejecución del ordenamiento fue de", resultados[1], "milisegndos.")
+
+
+
+    # Si escoge la opción 4.
+    elif (respuesta == 4):
+        # Inicializar catálogo.
+        catalogo = inicializar_catalogo(tipo_repres)
+
+        # Pedir al usuario el nombre del artista.
+        nombre = input("""\nPor favor, indique el nombre del artista:\n -> """)
+        respuesta_req_3 = controller.requerimiento_3(catalogo, nombre)
+        print(respuesta_req_3)
+
+        '''
+        # Invocar función del requeirmiento 3.
+        if not(type(nombre) == "str"):
+            print("\n>< Debe ingresar un nombre válido ><\n")
+            sys.exit(0)
+        else:
+            # Invocar función del requeirmiento 3.
+            respuesta_req_3 = controller.requerimiento_3(catalogo, nombre)
+            print(respuesta_req_3)
+            """
+            if not(respuesta_req_3 == (-1,-1)):
+                print(respuesta_req_3)
+            else:
+                print("\n>< Debe ingresar un nombre válido ><\n")
+            """
+        '''
+
+        
 
     # Si escoge la opción 0.
     else:

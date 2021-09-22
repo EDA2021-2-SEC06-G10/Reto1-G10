@@ -16,7 +16,7 @@ def requerimiento_1(catalog, anio_inicial, anio_final):
     primero = 0
     ultimos = 0
     start_time = time.process_time()
-    for cat in lt.iterator(catalog["nacimiento"]):
+    for cat in lt.iterator(catalog["artistas"]["nacimiento"]):
         if anio_final >= cat["nacimiento"] >= anio_inicial:
             artista = lt.getElement(artistas, cat)
             lt.insertElement(artistas_por_anio,artistas,cat)
