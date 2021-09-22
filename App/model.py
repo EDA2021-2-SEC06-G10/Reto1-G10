@@ -142,7 +142,8 @@ def nuevo_artista (info_artista: dict) -> dict:
                "id": "",
                "nacionalidad": "",
                "nacimiento": None,
-               "fallecimiento": None}
+               "fallecimiento": None,
+               "genero": ""}
 
     # Añadir datos.
     artista["nombre"] = info_artista["DisplayName"]
@@ -150,6 +151,7 @@ def nuevo_artista (info_artista: dict) -> dict:
     artista["nacionalidad"] = info_artista["Nationality"]
     artista["nacimiento"] = int(info_artista["BeginDate"])
     artista["fallecimiento"] = int(info_artista["EndDate"])
+    artista["genero"] = info_artista["Gender"]
 
     # Retornar al artista.
     return artista
