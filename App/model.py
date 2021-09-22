@@ -150,7 +150,7 @@ def nuevo_artista (info_artista: dict) -> dict:
     artista["nacionalidad"] = info_artista["Nationality"]
     artista["nacimiento"] = int(info_artista["BeginDate"])
     artista["fallecimiento"] = int(info_artista["EndDate"])
-
+    
     # Retornar al artista.
     return artista
 
