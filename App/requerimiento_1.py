@@ -24,10 +24,10 @@ def requerimiento_1(catalog, anio_inicial, anio_final):
 
     for art in (1,lt.size(artistas_por_anio)):
         if art["nacimiento"] == anio_inicial:
-            lt.addFirst(rta,art["nombre"]["nacimiento"]["fallecimiento"]["nacimiento"]["Genero"])
+            lt.addFirst(rta,art["nombre"]["nacimiento"]["fallecimiento"]["nacionalidad"]["Genero"])
 
         if art["nacimiento"] == anio_final:
-            lt.addLast(rta,art["nombre"]["nacimiento"]["fallecimiento"]["nacimiento"]["Genero"])
+            lt.addLast(rta,art["nombre"]["nacimiento"]["fallecimiento"]["nacionalidad"]["Genero"])
     
 
     x= ("hay ", contador_de_artistas , " artistas nacidos entre", anio_inicial, "y", anio_final, "adicional a esto los primeros y ultimos 3 artistas del rango son:",rta  )
