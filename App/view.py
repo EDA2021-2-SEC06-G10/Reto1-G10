@@ -28,6 +28,8 @@ import controller
 from DISClib.ADT import list as lt
 assert cf
 
+import model
+
 
 
 ###---###---------------------------------------------------------------------------------------------------------------------------###---###
@@ -189,9 +191,20 @@ while True:
         # Imprimir mensaje de éxito.
         print("\n<> Información cargada con éxito <>")
 
+        ###
+        obra_1 = lt.getElement(catalogo["obras"],1)
+        obra_2 = lt.getElement(catalogo["obras"],2)
+
+        print(model.cmp_obras_por_fecha_adquisicion(obra_1, obra_2))
+
+        ###
+
 
     # Si escoge la opción 2.
     elif (respuesta == 2):
+        # Inicializar catálogo.
+        catalogo = inicializar_catalogo(tipo_repres)
+        
         # Crear variables que guardan el texto instructivo para la escogencia del tipo
         # de representación de la lista del catálogo.
         texto_general = "\nAlgoritmos de ordenamiento disponibles:"
@@ -224,7 +237,7 @@ while True:
         tamanio = int(input("""Indique el tamaño de la muestra:\n -> """))
 
 
-        resultados = controller.ordenar_obras(catalogo, tamanio, algor_orden)
+        resultados = controller.ordenar_obras(catalogo, 100, algor_orden)
 
         print(" Ejecutando algoritmo. Espere . . .")
         print("\n El tiempo de ejecución del ordenamiento fue de", resultados[1], "milisegndos.")
@@ -232,4 +245,8 @@ while True:
     # Si escoge la opción 0.
     else:
         sys.exit(0)
+
+
+
 sys.exit(0)
+

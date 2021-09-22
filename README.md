@@ -4,28 +4,9 @@ Integrantes:
 
 MODIFICACIONES REALIZADAS:
 
- 1- En view.py(), se crearon las siguientes funciones:
-    > inicializar_catalogo(): inicializa el catálogo.
-    > cargar_datos(): carga los datos.
+ 1- Se importó la librería datetime.
 
- 2- Se modificaron las siguientes funciones de tal forma que reciban como parámetro una cadena que indica la representación que se desea que tenga la lista del catálogo.
-    > view.inicializar_catalogo().
-    > controller.inicializar_catalogo().
-    > model.nuevo_catalogo().
-
- 3- En view.py, se cambió el menú principal para que, al escoger la opción 1, se le permitiera al usuario escoger el tipo de representación de la lista del catálogo.
-
- 4- En model.py, se definió la función cmp_obras_por_fecha_adquisicion(), la cual cumple dicho propósito.
-
- 5- En model.py, se importaron los módulos referentes a los cuatro algoritmos de ordenamiento requeridos.
-
- 6- Se definieron las siguientes funciones, las cuales ordenan las obras con base en su fecha de adquisión:
-    > ordenar_obras() en model.py.
-    > ordenar_obras() en controller.py.
-
- 7- En view.py, se definió la función deter_algor_orden(), la cual retorna una cadena con el algoritmo de ordenamiento que desea usar el usuario.
-
- En general, se añadieron comentarios de varias línea de código.
+ 2- Se modificó la función cmp_obras_por_fecha_adquisicion() para que se usara la librería datetime.
 
 
 ##---------------------------------------------------------------------------------------------------------##

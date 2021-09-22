@@ -25,6 +25,7 @@
  """
 
 
+import datetime
 import config as cf
 from DISClib.ADT import list as lt
 import funciones as fun
@@ -34,6 +35,7 @@ from DISClib.Algorithms.Sorting import shellsort as she
 from DISClib.Algorithms.Sorting import mergesort as mer
 from DISClib.Algorithms.Sorting import quicksort as qui
 import time
+import datetime as date
 
 """
 Se define la estructura de un catálogo del museo, el cual tendrá dos listas:
@@ -240,31 +242,21 @@ def cmp_obras_por_fecha_adquisicion(obra_1, obra_2) -> bool:  # Pendiente especi
     fecha_obra_1 = obra_1["DateAcquired"]
     fecha_obra_2 = obra_2["DateAcquired"]
 
-    # Si ambas obras tienen fecha de adquicisión.
-    if not(fecha_obra_1 == "" and fecha_obra_2 == ""):
-        # Crear variables que guardan el año, mes y día de cada fecha.
-        anio_1 = int(fecha_obra_1[0:3])
-        mes_1 = int(fecha_obra_1[5:6])
-        dia_1 = int(fecha_obra_1[8:9])
-        anio_2 = int(fecha_obra_2[0:3])
-        mes_2 = int(fecha_obra_2[5:6])
-        dia_2 = int(fecha_obra_2[8:9])
+    # Si la obra 1 no tiene fecha de adquisición.
+    if fecha_obra_1 == "":
+        fecha_obra_1 = "0001-01-01"
 
-        # Si el año es menor.
-        if anio_1 < anio_2:
-            es_menor = True
+    # Si la obra 2 no tiene fecha de adquisición.
+    if fecha_obra_2 == "":
+        fecha_obra_2 = "0001-01-01"
 
-        # Si los años son iguales.
-        elif anio_1 == anio_2:
-            # Si el mes es menor.
-            if mes_1 < mes_2:
-                es_menor = True
+    # Crear variables con fechas modificadas.
+    mod_fecha_obra_1 = date.datetime.strptime(fecha_obra_1, '%Y-%m-%d')
+    mod_fecha_obra_2 = date.datetime.strptime(fecha_obra_2, '%Y-%m-%d')
 
-            # Si los meses son iguales.
-            elif mes_1 == mes_2:
-                # Si el día es menor.
-                if dia_1 < dia_2:
-                    es_menor = True
+    # Determinar si es menor.
+    if mod_fecha_obra_1 < mod_fecha_obra_2:
+        es_menor = True
     
     # Retornar respuesta.
     return (es_menor)
@@ -305,7 +297,7 @@ def ordenar_obras(catalogo, tamanio: int, algor_orden: str) -> tuple:
     lista_ordenada = None
 
     # Crear sublista.
-    sublista = lt.subList(catalogo["obras"], 1, 100)
+    sublista = lt.subList(catalogo["obras"], 0, tamanio)
     sublista = sublista.copy
 
     # Inicializar medición.
@@ -313,13 +305,13 @@ def ordenar_obras(catalogo, tamanio: int, algor_orden: str) -> tuple:
 
     # Ordenar la sublista dependiendo del algoritmo especificado.
     if (algor_orden == "Insertion Sort"):
-        lista_ordenada = ins.sort(sublista, ordenar_obras)
+        lista_ordenada = ins.sort(sublista, cmp_obras_por_fecha_adquisicion)
     elif (algor_orden == "Shell Sort"):
-        lista_ordenada = she.sort(sublista, ordenar_obras)
+        lista_ordenada = she.sort(sublista, cmp_obras_por_fecha_adquisicion)
     elif (algor_orden == "Merge Sort"):
-        lista_ordenada = mer.sort(sublista, ordenar_obras)
+        lista_ordenada = mer.sort(sublista, cmp_obras_por_fecha_adquisicion)
     elif (algor_orden == "Quick Sort"):
-        lista_ordenada = qui.sort(sublista, ordenar_obras)
+        lista_ordenada = qui.sort(sublista, cmp_obras_por_fecha_adquisicion)
     
     # Parar medición.
     stop_time = time.process_time()
@@ -329,4 +321,4 @@ def ordenar_obras(catalogo, tamanio: int, algor_orden: str) -> tuple:
 
     # Crear tupla con lista ordenada y tiempo de ejecución y retornarla.
     tupla_retorno = (elapsed_time_mseg, lista_ordenada)
-    return (tupla_retorno)
+    return (lista_ordenada)
