@@ -1,4 +1,4 @@
- 
+from DISClib.Algorithms.Sorting.quicksort import qui
 import config as cf
 import model
 import time
@@ -14,6 +14,8 @@ def requerimiento_1(catalog, anio_inicial:int, anio_final: int):
     artistas_por_anio= lt.newList()
     contador_de_artistas = 0
     rta= lt.newList()
+    primeros = 0
+    ultimos = 0
     save_equals_as_death = lt.newList()
     start_time = time.process_time()
     for cat in   lt.iterator(catalog["artistas"]):
@@ -24,18 +26,23 @@ def requerimiento_1(catalog, anio_inicial:int, anio_final: int):
 
 
             contador_de_artistas +=1
+
+    artistas_por_anio= qui.sort(artistas_por_anio,cmp_artistas_por_anio_de_nacimiento)
     #print(artistas_por_anio)
-    for art in lt.iterator(artistas_por_anio):
+    
+    while primeros < 3:
+        f= lt.firstElement(artistas_por_anio)
+        lt.addFirst(rta,f)
+        lt.removeFirst(artistas_por_anio)
+        primeros +=1
 
-        if art["nacimiento"] ==  anio_inicial:
-            lt.addFirst(rta,art)
-        elif art["nacimiento"]  < anio_final:   
-            lt.addLast(rta,art)
-        elif art["nacimiento"] == anio_final:
-            lt.addLast(save_equals_as_death,art)
+    while ultimos < 3:
+        f= lt.lastElement(artistas_por_anio)
+        lt.addLast(rta,f)
+        lt.removeLast(artistas_por_anio)
+        ultimos +=1    
 
-    for a in lt.iterator(save_equals_as_death):
-        lt.addLast(rta,a)
+         
 
 
 
@@ -48,7 +55,6 @@ def requerimiento_1(catalog, anio_inicial:int, anio_final: int):
 a = 1938
 b = 1945
 print(requerimiento_1(catalogo,a,b))
-
 
 
 

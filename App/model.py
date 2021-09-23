@@ -222,6 +222,29 @@ def nueva_obra (info_obra: str) -> dict:
 
 
 ##-----## Definición de funciones para la comparación de datos. ##-----##
+def cmp_artistas_por_anio_de_nacimiento(artista_1,artista_2):
+    fecha_1= artista_1["nacimiento"]
+    fecha_2= artista_2["nacimiento"]
+
+
+        # Si la obra 1 no tiene fecha de adquisición.
+    if artista_1 == "":
+        artista_1 = "0001-01-01"
+
+    # Si la obra 2 no tiene fecha de adquisición.
+    if artista_1 == "":
+        artista_1 = "0001-01-01"
+
+    # Crear variables con fechas modificadas.
+    artista_1 = date.datetime.strptime(artista_1, '%Y-%m-%d')
+    artista_2 = date.datetime.strptime(artista_2, '%Y-%m-%d')
+
+    # Determinar si es menor.
+    if artista_1 < artista_2:
+        es_menor = True
+    
+    # Retornar respuesta.
+    return (es_menor)
 
 
 # Función para comparación de obras de arte.

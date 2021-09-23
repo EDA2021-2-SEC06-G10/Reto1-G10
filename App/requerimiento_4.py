@@ -23,32 +23,10 @@ def requerimiento_4(catalog):
         for art in lt.iterator(catalog["obras"]):
             lista_id_artistas_obra= art["id"]
             for id in lista_id_artistas_obra:
-               # print(orb["id"],int(art["id"]))
-
                 if int(orb["id"]) == int(art["id"]):
                  #   print(True)
             
 
-        
-        
-    
-
-
-
-             
-    
-
-
-        
-
-        
-
-
-
-
-
-
-print(requerimiento_4(catalogo))
 
 
 
