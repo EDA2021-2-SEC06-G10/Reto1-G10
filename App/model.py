@@ -185,9 +185,10 @@ def nueva_obra (info_obra: str) -> dict:
             "Width (cm)": "",
             "Seat Height (cm)": ""}
 
-    obra["nombre"] = info_obra["Title"]
-    obra["Oid"] = info_obra["ObjectID"]
-    obra["id"] =int( info_obra["ConstituentID"])
+    #obra["nombre"] = info_obra["Title"]
+    #obra["Oid"] = info_obra["ObjectID"]
+    #obra["id"] =int( info_obra["ConstituentID"])
+    
     # Crear variable que guarda la lista de los id de los atistas que crearon la obra y asignarle la lista
     # que contiene dichos datos.
     lista_id_artistas = []

@@ -90,7 +90,7 @@ def cargar_artistas(catalogo) -> None:
         
     """
     # Crear variable que guarda la referencia al archivo de los artistas.
-    archivo_artistas = cf.data_dir + 'Artists-utf8-5pct.csv'
+    archivo_artistas = cf.data_dir + '\\MoMA\\Artists-utf8-small.csv'
 
     # Crear variable que guarda todos los artistas.
     input_file = csv.DictReader(open(archivo_artistas, encoding='utf-8'))
@@ -112,7 +112,7 @@ def cargar_obras(catalogo) -> None:
         
     """
     # Crear variable que guarda la referencia al archivo de las obras.
-    archivo_obras = cf.data_dir + 'Artworks-utf8-small.csv'
+    archivo_obras = cf.data_dir + '\\MoMA\\Artworks-utf8-small.csv'
 
     # Crear variable que guarda todas las obras.
     input_file = csv.DictReader(open(archivo_obras, encoding='utf-8'))

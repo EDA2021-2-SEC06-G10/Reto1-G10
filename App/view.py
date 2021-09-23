@@ -27,9 +27,8 @@ import sys
 import controller
 from DISClib.ADT import list as lt
 assert cf
-
 import model
-
+import requerimiento_3 as req_3
 
 
 ###---###---------------------------------------------------------------------------------------------------------------------------###---###
@@ -205,6 +204,7 @@ while True:
     elif (respuesta == 3):
         # Inicializar catálogo.
         catalogo = inicializar_catalogo(tipo_repres)
+        cargar_datos(catalogo)
         
         # Crear variables que guardan el texto instructivo para la escogencia del tipo
         # de representación de la lista del catálogo.
@@ -249,28 +249,46 @@ while True:
     elif (respuesta == 4):
         # Inicializar catálogo.
         catalogo = inicializar_catalogo(tipo_repres)
+        cargar_datos(catalogo)
 
         # Pedir al usuario el nombre del artista.
         nombre = input("""\nPor favor, indique el nombre del artista:\n -> """)
-        respuesta_req_3 = controller.requerimiento_3(catalogo, nombre)
-        print(respuesta_req_3)
 
-        '''
         # Invocar función del requeirmiento 3.
-        if not(type(nombre) == "str"):
+        if not(type(nombre) == str):
             print("\n>< Debe ingresar un nombre válido ><\n")
             sys.exit(0)
         else:
-            # Invocar función del requeirmiento 3.
-            respuesta_req_3 = controller.requerimiento_3(catalogo, nombre)
-            print(respuesta_req_3)
-            """
+            # Llamar a la función requerimiento_3().
+            respuesta_req_3 = req_3.requerimiento_3(catalogo, nombre)
+            
+            # Si el nombre ingresado fue válido.
             if not(respuesta_req_3 == (-1,-1)):
-                print(respuesta_req_3)
+                # Desempaquetar los datos.
+                (cantidad_obras, total_tecnicas, tecnica_mas_usada, lista_obras_tecnica) = respuesta_req_3
+
+                # Crear variables con respuestas de interés.
+                id_artista = req_3.dar_id_artista(catalogo, nombre)
+
+                # Crear variables que guardan el texto de la respuesta.
+                print("\nRepuesta:")
+                print("\n -> El/la artista", nombre, "con MoMA ID", id_artista, "tiene", cantidad_obras, "a su nombre en el museo." )
+                print("\n -> Ha usado", total_tecnicas, "técnicas diferentes en sus obras.")
+                print("\n -> Su técnica más usada es", str(tecnica_mas_usada) + ".")
+                print("\n -> El listado de las obras de dicha ténica es el siguiente:\n")
+                cantdad_obras_de_tecnica = len(lista_obras_tecnica)
+                contador = 1
+                for tupla in lista_obras_tecnica:
+                    print("\nObra número", str(contador) + ":")
+                    print("  -Título", tupla[0])
+                    print("  -Fecha:", tupla[1])
+                    print("  -Medio:", tupla[2])
+                    print("  -Dimensiones: ", "(" + str(tupla[3]) + ")")
+                    contador += 1
+            
+            # De lo contrario.
             else:
-                print("\n>< Debe ingresar un nombre válido ><\n")
-            """
-        '''
+                print("\n>< Debe ingresar un nombre válido ><\n") 
 
         
 
