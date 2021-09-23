@@ -198,8 +198,16 @@ while True:
         print(model.cmp_obras_por_fecha_adquisicion(obra_1, obra_2))
 
         ###
-
-
+    # Si escoge la opcion 2
+    elif (respuesta == 2):
+        # Inicializar catálogo.
+        catalogo = inicializar_catalogo(tipo_repres)
+        cargar_datos(catalogo)
+        anio_inicial = int(input("\nIndique el año incial.:\n -> "))
+        anio_final = int(input("\nIndique el año final.:\n -> "))
+        rta = model.requerimiento_1(catalogo,anio_inicial,anio_final)
+        print("\nRepuesta:")
+        print("\n la cantidad de artistas del rango", anio_inicial, "a", anio_final, "son", rta)
     # Si escoge la opción 3.
     elif (respuesta == 3):
         # Inicializar catálogo.
@@ -208,6 +216,7 @@ while True:
         
         intervalo_inferior = int(input("\nIndique la fecha incial.:\n -> "))
         
+
         # Si se escogió una opción inválida.
         if (opcion_algor_orden < 1) or (opcion_algor_orden > 4):
             print("\nError: debe escoger una opción válida.")
