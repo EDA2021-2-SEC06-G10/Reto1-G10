@@ -25,7 +25,6 @@
  """
 
 
-import datetime
 import config as cf
 from DISClib.ADT import list as lt
 import funciones as fun
@@ -327,3 +326,45 @@ def ordenar_obras(catalogo, tamanio: int, algor_orden: str) -> tuple:
     # Crear tupla con lista ordenada y tiempo de ejecución y retornarla.
     tupla_retorno = (elapsed_time_mseg, lista_ordenada)
     return (lista_ordenada)
+
+
+
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+###---###---------------------------------------------------------------------------------------------------------------------------###---###
+
+
+
+##-----## Definición de función del requerimiento 3. ##-----##
+
+
+# Función que retorna los valores de interés para el requerimiento 3.
+def requerimiento_3 (catalogo: dict, nombre: str) -> tuple:
+    """
+        Dado el catálogo y el nombre de un artista, esta función retorna una tupla con:
+            1- La cantidad de obras de las que este es autor.
+            2- El total de técnicas que este ha usado.
+            3- La técnica más utilizada.
+            4- La lista de las obras de dicha técnica, con:
+                >> Título.
+                >> Fecha.
+                >> Medio.
+                >> Dimensiones.
+
+        Parámetros:
+            -> catalogo (dict): catálogo.
+            -> nombre (str): nombre del autor.
+
+        Retorno:
+            -> (tuple): tupla con la información mencionada.
+                        Si la tupla resulta ser (-1,-1), entonces el nombre ingresado no es válido.
+
+    """
+    # Crear tupla de retorno.
+    tupla_retorno = None
+
+    # Cargar datos a la tupla de retorno.
+    tupla_retorno = fun.requerimiento_3(catalogo, nombre)
+
+    # Retorno.
+    return (tupla_retorno)
