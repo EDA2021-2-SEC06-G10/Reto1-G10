@@ -228,20 +228,20 @@ def cmp_artistas_por_anio_de_nacimiento(artista_1,artista_2):
     fecha_2= artista_2["nacimiento"]
 
 
-        # Si la obra 1 no tiene fecha de adquisición.
-    if artista_1 == "":
-        artista_1 = "0001-01-01"
+        # Si la obra 1 no tiene fecha de inicio.
+    if fecha_1 == "":
+        fecha_1 = "0001-01-01"
 
-    # Si la obra 2 no tiene fecha de adquisición.
-    if artista_1 == "":
-        artista_1 = "0001-01-01"
+    # Si la obra 2 no tiene fecha de incio.
+    if fecha_2 == "":
+        fecha_2 = "0001-01-01"
 
     # Crear variables con fechas modificadas.
-    artista_1 = date.datetime.strptime(artista_1, '%Y-%m-%d')
-    artista_2 = date.datetime.strptime(artista_2, '%Y-%m-%d')
+    fecha_1 = date.datetime.strptime(fecha_1, '%Y-%m-%d')
+    fecha_2 = date.datetime.strptime(fecha_2, '%Y-%m-%d')
 
     # Determinar si es menor.
-    if artista_1 < artista_2:
+    if fecha_1 < fecha_1:
         es_menor = True
     
     # Retornar respuesta.
@@ -392,3 +392,44 @@ def requerimiento_3 (catalogo: dict, nombre: str) -> tuple:
 
     # Retorno.
     return (tupla_retorno)
+
+
+def requerimiento_1(catalog, anio_inicial:int, anio_final: int):
+    artistas= catalog["artistas"]
+    artistas_por_anio= lt.newList()
+    contador_de_artistas = 0
+    rta= lt.newList()
+    primeros = 0
+    ultimos = 0
+    save_equals_as_death = lt.newList()
+    start_time = time.process_time()
+    for cat in   lt.iterator(catalog["artistas"]):
+        if anio_final >= int(cat["nacimiento"]) >= anio_inicial:
+
+            lt.insertElement(artistas_por_anio,cat,1)
+           
+
+
+            contador_de_artistas +=1
+
+    artistas_por_anio= qui.sort(artistas_por_anio,cmp_artistas_por_anio_de_nacimiento)
+    #print(artistas_por_anio)
+    
+    while primeros < 3:
+        f= lt.firstElement(artistas_por_anio)
+        lt.addFirst(rta,f)
+        lt.removeFirst(artistas_por_anio)
+        primeros +=1
+
+    while ultimos < 3:
+        f= lt.lastElement(artistas_por_anio)
+        lt.addLast(rta,f)
+        lt.removeLast(artistas_por_anio)
+        ultimos +=1    
+
+         
+
+
+
+
+    return (contador_de_artistas, rta)
