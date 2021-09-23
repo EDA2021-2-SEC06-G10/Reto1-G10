@@ -6,6 +6,8 @@ catalogo = controller.inicializar_catalogo("ARRAY_LIST")
 controller.cargar_datos(catalogo)
 
 
+
+
 # Función que retorna ConstituentID del artista.
 def dar_id_artista (catalogo: dict, nombre: str) -> int:
     """
