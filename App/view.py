@@ -206,23 +206,7 @@ while True:
         catalogo = inicializar_catalogo(tipo_repres)
         cargar_datos(catalogo)
         
-        # Crear variables que guardan el texto instructivo para la escogencia del tipo
-        # de representación de la lista del catálogo.
-        texto_general = "\nAlgoritmos de ordenamiento disponibles:"
-        texto_opcion_1 = """ 1- Insertion Sort."""
-        texto_opcion_2 = """ 2- Shell Sort."""
-        texto_opcion_3 = """ 3- Merge Sort."""
-        texto_opcion_4 = """ 4- Quick Sort."""
-
-        # Imprmir opciones.
-        print(texto_general)
-        print(texto_opcion_1)
-        print(texto_opcion_2)
-        print(texto_opcion_3)
-        print(texto_opcion_4)
-        
-        # Pedir al usuario algor. de ordenamiento.
-        opcion_algor_orden = int(input("""Indique el algoritmo de ordenamiento que desea usar:\n -> """))
+        intervalo_inferior = int(input("\nIndique la fecha incial.:\n -> "))
         
         # Si se escogió una opción inválida.
         if (opcion_algor_orden < 1) or (opcion_algor_orden > 4):
