@@ -29,6 +29,7 @@ from DISClib.ADT import list as lt
 assert cf
 import model
 import requerimiento_3 as req_3
+import requerimiento_2 as req_2
 
 
 ###---###---------------------------------------------------------------------------------------------------------------------------###---###
@@ -163,7 +164,7 @@ while True:
 
         print(model.cmp_obras_por_fecha_adquisicion(obra_1, obra_2))
 
-        ###
+        #
     # Si escoge la opcion 2
     elif (respuesta == 2):
         # Inicializar catálogo.
@@ -174,6 +175,10 @@ while True:
         rta = model.requerimiento_1(catalogo,anio_inicial,anio_final)
         print("\nRepuesta:")
         print("\n la cantidad de artistas del rango", anio_inicial, "a", anio_final, "son", rta)
+
+
+
+
     # Si escoge la opción 3.
     elif (respuesta == 3):
         # Inicializar catálogo.
@@ -182,10 +187,14 @@ while True:
         
         
         intervalo_inferior = (input("\nIndique la fecha incial.:\n -> "))
-        intervalo_superior =  (input("\nIndique la fecha final.:\n -> "))
-        
-        
+        intervalo_superior =  (input("\nIndique la fecha final.:\n -> "))1
     
+
+        respuesta_req_2 = req_2.requerimiento_2(catalogo, intervalo_inferior, intervalo_superior)
+
+        print(respuesta_req_2)
+
+
 
 
 
