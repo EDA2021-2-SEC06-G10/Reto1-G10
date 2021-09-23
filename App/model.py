@@ -65,7 +65,7 @@ def nuevo_catalogo(tipo_representacion: str):
                 'obras': None}
 
     # Crear listas vacías de los artistas y las obras al catálogo.
-    catalogo['artistas'] = lt.newList(tipo_representacion,cmpfunction=cmp_obras_por_fecha_adquisicion)         # Pendiente añadir función de comparación.
+    catalogo['artistas'] = lt.newList(tipo_representacion,cmpfunction=cmp_artistas_por_anio_de_nacimiento)         # Pendiente añadir función de comparación.
     catalogo['obras'] = lt.newList(tipo_representacion,cmpfunction=cmp_obras_por_fecha_adquisicion)            # Pendiente añadir función de comparación.
     
     # Retornar el catálogo.
@@ -188,7 +188,7 @@ def nueva_obra (info_obra: str) -> dict:
     #obra["nombre"] = info_obra["Title"]
     #obra["Oid"] = info_obra["ObjectID"]
     #obra["id"] =int( info_obra["ConstituentID"])
-    
+
     # Crear variable que guarda la lista de los id de los atistas que crearon la obra y asignarle la lista
     # que contiene dichos datos.
     lista_id_artistas = []
@@ -249,7 +249,7 @@ def cmp_artistas_por_anio_de_nacimiento(artista_1,artista_2):
 
 
 # Función para comparación de obras de arte.
-def cmp_obras_por_fecha_adquisicion(obra_1, obra_2) -> bool:  # Pendiente especificar tipo obra_1 y obra_2.
+def cmp_obras_por_fecha_adquisicion(obra_1: dict, obra_2: dict) -> bool:
     """
         Esta función determina si la fecha de adquisición de obra_1 es menor que
         la de obra_2.
@@ -331,15 +331,7 @@ def ordenar_obras(catalogo, tamanio: int, algor_orden: str) -> tuple:
     # Inicializar medición.
     start_time = time.process_time()
 
-    # Ordenar la sublista dependiendo del algoritmo especificado.
-    if (algor_orden == "Insertion Sort"):
-        lista_ordenada = ins.sort(sublista, cmp_obras_por_fecha_adquisicion)
-    elif (algor_orden == "Shell Sort"):
-        lista_ordenada = she.sort(sublista, cmp_obras_por_fecha_adquisicion)
-    elif (algor_orden == "Merge Sort"):
-        lista_ordenada = mer.sort(sublista, cmp_obras_por_fecha_adquisicion)
-    elif (algor_orden == "Quick Sort"):
-        lista_ordenada = qui.sort(sublista, cmp_obras_por_fecha_adquisicion)
+    
     
     # Parar medición.
     stop_time = time.process_time()

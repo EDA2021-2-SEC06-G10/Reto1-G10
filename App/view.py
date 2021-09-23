@@ -101,40 +101,6 @@ def cargar_datos(catalogo) -> None:
     # Cargar los datos mediante la función homónima de controller.py.
     controller.cargar_datos(catalogo)
 
-
-# Función que determina el algoritmo de ordenamiento que se quiere usar para
-# ordenar las obras.
-def deter_algor_orden(opcion_escogida: int) -> str:
-    """
-        Esta función determina el algoritmo de ordenamiento que se quiere usar
-        para ordenar las obras.
-
-        Parámetro:
-            -> algor_escogido (int): opción escogida por el usuario.
-
-        Retorno:
-            -> (str): "Insertion Sort" en caso de escoger este algoritmo.
-                      "Shell Sort" en caso de escoger este algoritmo.
-                      "Merge Sort" en caso de escoger este algoritmo.
-                      "Quick Sort" en caso de escoger este algoritmo.
-
-    """
-    # Variable de retorno.
-    algor_orden = ""
-
-    # Determinar algoritmo.
-    if opcion_escogida == 1:
-        algor_orden = "Insertion Sort"
-    elif opcion_escogida == 2:
-        algor_orden = "Shell Sort"
-    elif opcion_escogida == 3:
-        algor_orden = "Merge Sort"
-    elif opcion_escogida == 4:
-        algor_orden = "Quick Sort"
-    
-    # Retornar.
-    return (algor_orden)
-
 # Crear variable que guardará el catálogo.
 catalogo = None
 
@@ -191,13 +157,6 @@ while True:
         # Imprimir mensaje de éxito.
         print("\n<> Información cargada con éxito <>")
 
-        ###
-        obra_1 = lt.getElement(catalogo["obras"],1)
-        obra_2 = lt.getElement(catalogo["obras"],2)
-
-        print(model.cmp_obras_por_fecha_adquisicion(obra_1, obra_2))
-
-        ###
 
 
     # Si escoge la opción 3.
@@ -206,26 +165,13 @@ while True:
         catalogo = inicializar_catalogo(tipo_repres)
         cargar_datos(catalogo)
         
-        intervalo_inferior = int(input("\nIndique la fecha incial.:\n -> "))
         
-        # Si se escogió una opción inválida.
-        if (opcion_algor_orden < 1) or (opcion_algor_orden > 4):
-            print("\nError: debe escoger una opción válida.")
-            sys.exit(0)
-
-        # De lo contrario.
-        else:
-            # Determinar algor. de orden. escogido.
-            algor_orden = deter_algor_orden(opcion_algor_orden)
+        intervalo_inferior = (input("\nIndique la fecha incial.:\n -> "))
+        intervalo_superior =  (input("\nIndique la fecha final.:\n -> "))
         
-        # Pedir al usuario tamaño sublista.
-        tamanio = int(input("""Indique el tamaño de la muestra:\n -> """))
+        
+    
 
-
-        resultados = controller.ordenar_obras(catalogo, 100, algor_orden)
-
-        print(" Ejecutando algoritmo. Espere . . .")
-        print("\n El tiempo de ejecución del ordenamiento fue de", resultados[1], "milisegndos.")
 
 
 
